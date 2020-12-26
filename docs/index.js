@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     const repos = getRepos(github_endpoint + '/users/mefcn/repos')
     repos.forEach(repo => {
         console.log(repo)
-    }
+    })
 })
 
 async function getRepos(url, user) {
