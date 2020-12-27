@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" type="text/css" href="index.css">
+    <title>chartreux</title>
+    <script async src="index.js"></script>
+</head>
+<body>
+    <header>
+        <h1>開発者ポータル</h1>
+    </header>
+
+    <main>
+        <div class="card" id="chartreux">
+            <span>chartreux / 開発者ポータル</span>
+            <section id="chartreux-update"></section>
+        </div>
+
+        <script type="riot/tag" src="/tags/commits.tag"></script>
+        <script src="https://cdn.jsdelivr.net/npm/riot@3/riot+compiler.min.js"></script>
+        <script>
+            riot.compile(() => {
+                const endpoint = 'https://api.github.com'
+
+                fetch(endpoint + '/repos/mefcn/chartreux/commits')
+                    .then(r => r.json())
+                    .then(x => riot.mount('#chartreux #chartreux-update', 'commits', { data: x}))
+
+                riot.mount('*')
+            })
+        </script>
+    </main>
+</body>
+</html>
